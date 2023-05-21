@@ -1,6 +1,6 @@
 url: https://stablediffusionapi.com/api/v3/text2img
 payload:
-  key: X9BMj9TeT1TgCJElOM3PzootCWrBdg0oLEJUTBDDT7R3F1MvtEYIsGPgoTej
+  key: <stable_api_key>
   prompt: ultra realistic close up portrait ((beautiful pale cyberpunk female with heavy black eyeliner))
   negative_prompt: null
   width: 512
