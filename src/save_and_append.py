@@ -2,42 +2,15 @@ import os
 import json
 import datetime
 import requests
-import time
-
-import os
-import json
-import datetime
-import requests
-import time
 
 def save_and_append(response: dict, output_folder: str) -> None:
-    # maximum number of attempts to fetch the result
-    max_attempts = 10  
-    attempts = 0  
-
-    if response['status'] == 'success':
-        save_response(response, output_folder)
-    else:
-        # Loop until the status is 'success' or maximum number of attempts reached
-        while response['status'] != 'success' and attempts < max_attempts:
-            time.sleep(response['eta'])  # wait for the estimated time before next fetch
-            # Make a request to the fetch_result endpoint to get the updated status
-            response = requests.get(response['fetch_result']).json()
-            attempts += 1
-
-            # If the status is 'success', proceed with saving the data
-            if response['status'] == 'success':
-                save_response(response, output_folder)
-
-def save_response(response: dict, output_folder: str) -> None:
     folder_path = os.path.join(output_folder, str(response['id']))
     i = 0
     while os.path.exists(folder_path):
         i += 1
         folder_path = os.path.join(output_folder, f"{response['id']} ({i})")
 
-    paths = {key: os.path.join(folder_path, f"{response['id']}_{key}.{ext}") 
-             for key, ext in zip(["prompt", "json", "image"], ["txt", "json", "jpg"])}
+    paths = {key: os.path.join(folder_path, f"{response['id']}_{key}.{ext}") for key, ext in zip(["prompt", "json", "image"], ["txt", "json", "jpg"])}
     os.makedirs(os.path.dirname(paths["prompt"]), exist_ok=True)
 
     with open(paths["prompt"], 'w') as f:
@@ -60,4 +33,3 @@ def save_response(response: dict, output_folder: str) -> None:
 
         with open('master.json', 'w') as f:
             json.dump(data, f, indent=4)
-
