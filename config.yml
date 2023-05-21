@@ -1,0 +1,19 @@
+url: https://stablediffusionapi.com/api/v3/text2img
+payload:
+  key: X9BMj9TeT1TgCJElOM3PzootCWrBdg0oLEJUTBDDT7R3F1MvtEYIsGPgoTej
+  prompt: ultra realistic close up portrait ((beautiful pale cyberpunk female with heavy black eyeliner))
+  negative_prompt: null
+  width: 512
+  height: 512
+  samples: 1
+  num_inference_steps: 20
+  seed: null
+  guidance_scale: 7.5
+  safety_checker: yes
+  multi_lingual: no
+  panorama: no
+  self_attention: no
+  upscale: no
+  embeddings_model: embeddings_model_id
+  webhook: null
+  track_id: null
