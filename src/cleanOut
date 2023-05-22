@@ -1,0 +1,13 @@
+import os, json, shutil
+def remove_processing_dirs(path):
+    for root, dirs, files in os.walk(path):
+        for file in files:
+            if file.endswith(".json"):
+                with open(os.path.join(root, file), 'r') as f:
+                    try:
+                        data = json.load(f)
+                        if isinstance(data, dict) and data.get('status') == 'processing':
+                            shutil.rmtree(root)
+                            break
+                    except ValueError:
+                        pass
